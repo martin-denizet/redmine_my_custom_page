@@ -1,3 +1,18 @@
 = redmine_my_custom_page
 
-Description goes here
+This plugins adds a new block in My Page.
+This block displays the oldest non-updated issue and the issues by priority. It is supposed to indicate to the users what needs to be done next.
+
+= Installation
+
+No database changes are required.
+<pre>
+cd /<your_redmine>/vendor/plugins
+git clone https://github.com/martin-denizet/redmine_my_custom_page redmine_my_custom_page
+</pre>
+Don't forget to restart your server instance.
+
+= Credit and License
+
+The code is based on the redmine_extended_mypage plugin by Tsubo(http://code.google.com/p/tsubo-redmine-plugins/) and therefore licensed under the GNU GPL v2 license
+Plugin sponsored by IREC Beijing co. ltd.
