@@ -1,0 +1,20 @@
+# English strings go here
+en:
+
+  extended_issuesassignedtome: "Extended issues assigned to me"
+  label_extended_mypage_assigned_to_me_issues: "Extended Issues assigned to me"
+  label_extended_mypage_assigned_to_me_max_num: "Top {{count}} issues"
+  label_extended_mypage_done_ratio: "Done %"
+  label_extended_mypage_calculated_hours: "Cal h"
+  label_extended_mypage_spent_hours: "Spent"
+  label_extended_mypage_estimated_hours: "Est. time"
+  label_extended_mypage_expire: "Expired"
+  label_extended_mypage_today: "Today"
+  label_extended_mypage_no_due_date: "No Due Date"
+
+  #extended_timelog: "Extended Timelog"
+  #label_extended_mypage_spent_time: "Extended Timelog"
+  #label_extended_mypage_spent_time_show_date: "Last {{count}} days"
+
+  setting_extended_mypage_assigned_to_me_max_num: "Extended issues assigned to me. Max number of issues."
+  #setting_extended_mypage_spent_time_show_date: "Extended Issues assigned to me. Show days."

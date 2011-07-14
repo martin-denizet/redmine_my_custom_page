@@ -1,0 +1,139 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'mypage', :plugin => 'redmine_my_custom_page' %>
+<% end %>
+
+<h3>
+  <%=l(:label_extended_mypage_assigned_to_me_issues)%>
+	(<%= l(:label_extended_mypage_assigned_to_me_max_num, Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num']) %>)
+</h3>
+
+<%
+issues = Issue.find(:all,
+  :conditions => ["assigned_to_id=? AND #{IssueStatus.table_name}.is_closed=? AND #{Project.table_name}.status=#{Project::STATUS_ACTIVE}", user.id, false],
+  :limit => Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num'],
+  :include => [ :status, :project, :tracker, :priority ],
+  :order => "#{Enumeration.table_name}.position DESC, #{Issue.table_name}.updated_on DESC")
+%>
+<% if issues && issues.any? %>
+  <% form_tag({}) do %>
+    <table class="list issues">
+      <thead><tr>
+          <th>
+            <%= l(:label_project) %>
+          </th>
+          <th>
+            <%= l(:field_subject) %>
+          </th>
+          <th>
+            <%= l(:field_priority) %>/<%= l(:field_status) %>
+          </th>
+          <th>
+            <%= l(:field_done_ratio) %>
+          </th>
+          <th>
+            <%= l(:label_extended_mypage_spent_hours) %>/<%= l(:label_extended_mypage_estimated_hours) %>
+          </th>
+        </tr></thead>
+      <tbody>
+        <%
+        issues_by_due_date = issues.group_by(&:due_date)
+        keys = issues_by_due_date.keys
+        if keys.include?(nil) then
+          keys.delete(nil)
+          keys.sort!
+          keys.push(nil)
+        else
+          keys.sort!
+        end
+        keys.each do |date|
+        %>
+          <tr class="odd">
+            <td colspan="5">
+              <strong>
+                <%=
+                if (date == nil) then
+                  l(:label_extended_mypage_no_due_date)
+                elsif (date < Date.today) then
+                  '<span style="color:#ff0000">' + format_date(date) + ' (' + l(:label_extended_mypage_expire) + ')</span>'
+                elsif (date == Date.today)
+                  '<span style="color:#888800">' + format_date(date) + ' (' + l(:label_extended_mypage_today) + ')</span>'
+                elsif (date > Date.today) then
+                  format_date(date)
+                end
+              %>
+              </strong>
+            </td>
+          </tr>
+          <% issues_by_due_date[date].each do |issue| -%>
+            <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('even') %> <%= issue.css_classes() %>" style="border-bottom: 1px solid #f5f5f5;">
+              <td class="id" style="white-space: nowrap">
+                <%= check_box_tag("ids[]", issue.id, false, :style => 'display:none;') %>
+                <%= link_to h(truncate(issue.project.name, :length => 20)), :controller => 'projects', :action => 'show', :id => issue.project %>
+              </td>
+              <td class="subject">
+                <%= issue.tracker %> <%= link_to h("#" + issue.id.to_s+":"+truncate(issue.subject, :length => 45)), :controller => 'issues', :action => 'show', :id => issue %>
+              </td>
+              <td>
+                <span class="priority<%= issue.priority.id %>">
+                  <%= issue.priority %></span> / <%= issue.status %>
+              </td>
+              <td class="hours" style="white-space: nowrap">
+                <%=
+                progress_bar(issue.done_ratio, :width => '80px')
+              %>
+        <%#=
+        #Is this value relevant?
+        if issue.done_ratio == 0 || issue.spent_hours == 0 then
+        "-"
+        else
+        calclate_hours = (issue.spent_hours / issue.done_ratio * 100).round(2)
+        if (calclate_hours > issue.estimated_hours * 1.5) then
+        '<span style="color:#ff0000">' + html_hours("%.2f" % calclate_hours.to_s) + "</span>"
+        elsif (calclate_hours > issue.estimated_hours) then
+        '<span style="color:#888800">' + html_hours("%.2f" % calclate_hours.to_s) + "</span>"
+        else
+        html_hours("%.2f" % calclate_hours.to_s)
+        end
+        end
+        %>
+
+              </td>
+              <td class="hours" style="white-space: nowrap">
+                <%=
+                #Display in Red if the spent time if more than the estimated time.
+                if issue.estimated_hours != nil && issue.spent_hours > issue.estimated_hours then
+                  '<span style="color:orange">' +html_hours("%.2f" % issue.spent_hours) + "</span>"
+                else
+                  html_hours("%.2f" % issue.spent_hours)
+                end
+              %> /
+                <% if  issue.estimated_hours!=nil %>
+                  <%= html_hours("%.2f" % issue.estimated_hours) %>
+                <% else %>
+                  -
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% if issues.length > 0 %>
+  <p class="small"><%= link_to l(:label_issue_view_all), :controller => 'issues',
+      :action => 'index',
+      :set_filter => 1,
+      :assigned_to_id => 'me',
+      :sort => 'priority:desc,updated_on:desc' %></p>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom,
+    {:controller => 'issues', :action => 'index', :set_filter => 1,
+      :assigned_to_id => 'me', :format => 'atom', :key => User.current.rss_key},
+    {:title => l(:label_assigned_to_me_issues)}) %>
+<% end %>

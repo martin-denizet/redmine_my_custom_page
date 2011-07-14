@@ -1,0 +1,39 @@
+/* 
+    Document   : mypage
+    Created on : Jul 13, 2011, 3:12:28 AM
+    Author     : martin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+
+.priority7{
+    color: red;
+    font-weight: bold;
+}
+.priority6{
+    color: orangered;
+    font-weight: bold;
+}
+.priority5{
+    color: orange;
+    font-weight: bold;
+}
+.priority4{
+
+}
+.priority3{
+
+}
+.priority2{
+
+}
+.priority1{
+
+}
