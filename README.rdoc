@@ -1,18 +1,30 @@
-= redmine_my_custom_page
+= Redmin redmine_my_custom_page plugin
 
 This plugins adds a new block in My Page.
+
 This block displays the oldest non-updated issue and the issues by priority. It is supposed to indicate to the users what needs to be done next.
+
+= Tested environments
+
+* Redmine 1.1.0
+* Redmine 1.2.0
 
 = Installation
 
-No database changes are required.
-<pre>
+No database changes are required. Just run the following commands:
+
 cd /<your_redmine>/vendor/plugins
+
 git clone https://github.com/martin-denizet/redmine_my_custom_page redmine_my_custom_page
-</pre>
-Don't forget to restart your server instance.
+
+Don't forget to restart your Redmine instance.
+
+= Configuration
+
+It is possible to configure the number of issue displayed in the plugin configuration.
 
 = Credit and License
 
-The code is based on the redmine_extended_mypage plugin by Tsubo(http://code.google.com/p/tsubo-redmine-plugins/) and therefore licensed under the GNU GPL v2 license
+The code is based on the redmine_extended_mypage plugin by Tsubo(http://code.google.com/p/tsubo-redmine-plugins/) and therefore licensed under the GNU GPL v2 license.
+
 Plugin sponsored by IREC Beijing co. ltd.

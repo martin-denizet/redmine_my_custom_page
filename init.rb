@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_my_custom_page do
 Sponsored by IREC Beijing co. ltd.
 Adapted from redmine_extended_mypage Tsubo (http://code.google.com/p/tsubo-redmine-plugins/).
 GNU GPL v2 license'
-  version '0.0.1'
+  version '0.0.2'
   url 'https://github.com/martin-denizet'
   author_url 'https://github.com/martin-denizet'
 

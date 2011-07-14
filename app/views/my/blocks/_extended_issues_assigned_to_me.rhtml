@@ -1,6 +1,9 @@
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'mypage', :plugin => 'redmine_my_custom_page' %>
 <% end %>
+<%
+today=Date.today
+%>
 
 <h3>
   <%=l(:label_extended_mypage_assigned_to_me_issues)%>
@@ -71,7 +74,10 @@ issues = Issue.find(:all,
                 <%= link_to h(truncate(issue.project.name, :length => 20)), :controller => 'projects', :action => 'show', :id => issue.project %>
               </td>
               <td class="subject">
-                <%= issue.tracker %> <%= link_to h("#" + issue.id.to_s+":"+truncate(issue.subject, :length => 45)), :controller => 'issues', :action => 'show', :id => issue %>
+                <div class="status-<%= issue.status.id %> priority-<%= issue.priority.id %> <%= 'starting' if today == issue.start_date %> <%= 'ending' if today == issue.due_date %> tooltip">
+                  <%= issue.tracker %> <%= link_to h("#" + issue.id.to_s+":"+truncate(issue.subject, :length => 45)), :controller => 'issues', :action => 'show', :id => issue %>
+                  <span class="tip"><%= render_issue_tooltip issue %></span>
+                </div>
               </td>
               <td>
                 <span class="priority<%= issue.priority.id %>">
