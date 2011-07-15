@@ -1,0 +1,19 @@
+# Simplified Chinese
+zh:
+
+  extended_issuesassignedtome: "一直指派给我的问题"
+  label_extended_mypage_assigned_to_me_issues: "一直指派给我的问题"
+  label_extended_mypage_assigned_to_me_max_num: "前 {{count}} 问题"
+  label_extended_mypage_calculated_hours: "Cal h"
+  label_extended_mypage_spent_hours: "花费"
+  label_extended_mypage_estimated_hours: "估计需要. 时间"
+  label_extended_mypage_expire: "已经到期"
+  label_extended_mypage_today: "今天"
+  label_extended_mypage_no_due_date: "无终止时间限制"
+
+  #extended_timelog: "延长的时间"
+  #label_extended_mypage_spent_time: "延长的时间"
+  #label_extended_mypage_spent_time_show_date: "持续 {{count}} 时间"
+
+  setting_extended_mypage_assigned_to_me_max_num: "Extended issues assigned to me. Max number of issues."
+  #setting_extended_mypage_spent_time_show_date: "Extended Issues assigned to me. Show days."
