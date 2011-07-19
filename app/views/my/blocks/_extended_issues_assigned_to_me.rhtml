@@ -87,22 +87,6 @@ issues = Issue.find(:all,
                 <%=
                 progress_bar(issue.done_ratio, :width => '80px')
               %>
-        <%#=
-        #Is this value relevant?
-        if issue.done_ratio == 0 || issue.spent_hours == 0 then
-        "-"
-        else
-        calclate_hours = (issue.spent_hours / issue.done_ratio * 100).round(2)
-        if (calclate_hours > issue.estimated_hours * 1.5) then
-        '<span style="color:#ff0000">' + html_hours("%.2f" % calclate_hours.to_s) + "</span>"
-        elsif (calclate_hours > issue.estimated_hours) then
-        '<span style="color:#888800">' + html_hours("%.2f" % calclate_hours.to_s) + "</span>"
-        else
-        html_hours("%.2f" % calclate_hours.to_s)
-        end
-        end
-        %>
-
               </td>
               <td class="hours" style="white-space: nowrap">
                 <%=
