@@ -22,6 +22,7 @@ Don't forget to restart your Redmine instance.
 = Configuration
 
 It is possible to configure the number of issue displayed in the plugin configuration.
+It's also possible to configure redirections to My Page after a successful login or to replace the "Home" page by My Page.
 
 = Credit and License
 
