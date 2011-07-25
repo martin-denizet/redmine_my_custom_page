@@ -10,15 +10,15 @@ Redmine::Plugin.register :redmine_my_custom_page do
 Sponsored by IREC Beijing co. ltd.
 Adapted from redmine_extended_mypage Tsubo (http://code.google.com/p/tsubo-redmine-plugins/).
 GNU GPL v2 license'
-  version '0.0.2-dev'
+  version '0.1.0'
   url 'https://github.com/martin-denizet'
   author_url 'https://github.com/martin-denizet'
 
 
   settings :default=>{
-    'assigned_to_me_max_num'=>20,
-    'redirect_welcome_to_my_page'=> "1",
-    'redirect_logon_to_my_page'=> "1"
+    'assigned_to_me_max_num' => "20",
+    'redirect_welcome_to_my_page'=> "0",
+    'redirect_logon_to_my_page'=> "0"
   }, :partial => 'settings/my_custom_page_settings'
 
 end
