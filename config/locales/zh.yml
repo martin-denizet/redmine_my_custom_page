@@ -11,9 +11,6 @@ zh:
   label_extended_mypage_today: "今天"
   label_extended_mypage_no_due_date: "无终止时间限制"
 
-  #extended_timelog: "延长的时间"
-  #label_extended_mypage_spent_time: "延长的时间"
-  #label_extended_mypage_spent_time_show_date: "持续 {{count}} 时间"
-
   setting_extended_mypage_assigned_to_me_max_num: "Extended issues assigned to me. Max number of issues."
-  #setting_extended_mypage_spent_time_show_date: "Extended Issues assigned to me. Show days."
+  setting_extended_mypage_redirect_welcome_to_my_page: "Replace the 'Home' page by My Page"
+  setting_extended_mypage_redirect_logon_to_my_page: "Redirect to My Page after a successful login if the return_url is not specified"

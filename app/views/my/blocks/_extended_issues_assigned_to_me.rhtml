@@ -7,13 +7,13 @@ today=Date.today
 
 <h3>
   <%=l(:label_extended_mypage_assigned_to_me_issues)%>
-	(<%= l(:label_extended_mypage_assigned_to_me_max_num, Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num']) %>)
+	(<%= l(:label_extended_mypage_assigned_to_me_max_num, {:count => Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num'].to_s}) %>)
 </h3>
 
 <%
 issues = Issue.find(:all,
   :conditions => ["assigned_to_id=? AND #{IssueStatus.table_name}.is_closed=? AND #{Project.table_name}.status=#{Project::STATUS_ACTIVE}", user.id, false],
-  :limit => Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num'],
+  :limit => Setting.plugin_redmine_my_custom_page['assigned_to_me_max_num'].to_i,
   :include => [ :status, :project, :tracker, :priority ],
   :order => "#{Enumeration.table_name}.position DESC, #{Issue.table_name}.updated_on DESC")
 %>

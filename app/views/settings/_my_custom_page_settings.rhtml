@@ -1,2 +1,18 @@
-<p><label><%= l(:setting_extended_mypage_assigned_to_me_max_num) %></label><%= text_field_tag 'settings[assigned_to_me_max_num]', @settings['assigned_to_me_max_num'] %></p>
+<p>
+  <label>
+<%= l(:setting_extended_mypage_assigned_to_me_max_num) %>
+  </label>
+<%= text_field_tag 'settings[assigned_to_me_max_num]', @settings['assigned_to_me_max_num'] %>
+</p>
 
+<p>
+  <label><%= l(:setting_extended_mypage_redirect_welcome_to_my_page) %></label>
+  <%= hidden_field_tag 'settings[redirect_welcome_to_my_page]', 0 %>
+  <%= check_box_tag 'settings[redirect_welcome_to_my_page]', 1, @settings['redirect_welcome_to_my_page'].to_i == 1 %>
+</p>
+
+<p>
+  <label><%= l(:setting_extended_mypage_redirect_logon_to_my_page) %></label>
+  <%= hidden_field_tag 'settings[redirect_logon_to_my_page]', 0 %>
+  <%= check_box_tag 'settings[redirect_logon_to_my_page]', 1, @settings['redirect_logon_to_my_page'].to_i == 1 %>
+</p>

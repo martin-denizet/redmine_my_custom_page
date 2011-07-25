@@ -1,6 +1,7 @@
 require 'redmine'
 
 require 'redmine_my_custom_page/patches/application_controller_patch'
+require 'redmine_my_custom_page/patches/welcome_controller_patch'
 
 Redmine::Plugin.register :redmine_my_custom_page do
   name 'Redmine My Custom Page plugin'
@@ -15,7 +16,9 @@ GNU GPL v2 license'
 
 
   settings :default=>{
-    'assigned_to_me_max_num'=>20
+    'assigned_to_me_max_num'=>20,
+    'redirect_welcome_to_my_page'=> "1",
+    'redirect_logon_to_my_page'=> "1"
   }, :partial => 'settings/my_custom_page_settings'
 
 end
